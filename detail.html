@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>作品詳細 | バタジーのスケッチギャラリー</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .detail{display:grid;gap:18px}
+    .hero{display:grid;grid-template-columns:1fr;gap:16px}
+    .hero .image{width:100%;border-radius:14px;overflow:hidden;border:1px solid rgba(148,163,184,.2)}
+    .hero .image img{width:100%;height:auto;display:block}
+    .meta{display:grid;gap:8px}
+    .meta .title{font-size:1.25rem;font-weight:700}
+    .meta .sub{color:var(--muted)}
+    .spec{color:var(--muted);font-size:.95rem}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .tag{border:1px solid rgba(148,163,184,.35);padding:.15rem .55rem;border-radius:999px;font-size:.8rem}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(148,163,184,.35);padding:.45rem .7rem;border-radius:10px}
+    .btn:hover{background:rgba(148,163,184,.12)}
+    @media (min-width:920px){ .hero{grid-template-columns:minmax(0,2fr) minmax(0,1fr)} }
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+    <div class="brand"><div class="logo"></div><strong>バタジーのスケッチギャラリー</strong></div>
+    <nav class="links"><a href="index.html">ホーム</a><a href="gallery.html">作品一覧</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <section id="detail" class="detail">
+    <div class="card">読み込み中です…</div>
+  </section>
+</main>
+
+<footer class="site">&copy; 2025 川端浩二</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const box = document.getElementById('detail');
+    const qs  = new URLSearchParams(location.search);
+    const key = (qs.get('id') || '').trim().toLowerCase();
+  
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, m => (
+      {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]
+    ));
+  
+    function render(item){
+      if (!item || !item.image){
+        box.innerHTML = `<div class="card">作品が見つかりませんでした。</div>`;
+        return;
+      }
+      const dateTxt = item.date ? String(item.date).slice(0,10) : '';
+      const sub = [item.location || '', dateTxt].filter(Boolean).join(' / ');
+      const spec = [item.size, item.paper, item.medium].filter(Boolean).join('・');
+      box.innerHTML = `
+        <div class="card hero">
+          <div class="image">
+            <img src="${item.image}" alt="${esc(item.title || '')}" decoding="async">
+          </div>
+          <div class="meta">
+            <div class="title">${esc(item.title || '')}</div>
+            ${sub ? `<div class="sub">${esc(sub)}</div>` : ''}
+            ${spec ? `<div class="spec">${esc(spec)}</div>` : ''}
+            ${item.description ? `<p>${esc(item.description)}</p>` : ''}
+            ${Array.isArray(item.tags) && item.tags.length ? `<div class="tags">${item.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>`:''}
+            <div class="actions">
+              <a class="btn" href="gallery.html">← 作品一覧へ戻る</a>
+              <a class="btn" href="${item.image}" target="_blank" rel="noopener">原寸で開く</a>
+              ${item.pdf && /\.pdf$/i.test(item.pdf) ? `<a class="btn" href="pdf.html?src=${encodeURIComponent(item.pdf)}" target="_blank" rel="noopener">解説PDFを見る</a>`:''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  
+    function findByKey(list){
+      if (!key) return null;
+      return list.find(x => String(x.id||'').toLowerCase() === key)
+          ||  list.find(x => String((x.image||'').split('/').pop()).toLowerCase() === key)
+          ||  list.find(x => String(x.title||'').toLowerCase() === key)
+          ||  null;
+    }
+  
+    fetch('data/works.json', {cache:'no-store'})
+      .then(r => r.ok ? r.json() : [])
+      .then(list => {
+        const arr = Array.isArray(list) ? list : [list];
+        render(findByKey(arr));
+      })
+      .catch(() => {
+        box.innerHTML = `<div class="card">作品データ（data/works.json）の読み込みに失敗しました。</div>`;
+      });
+  });
+  </script>  
+</body>
+</html>
+
+
+

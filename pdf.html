@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>解説PDF | バタジーのスケッチギャラリー</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .viewer{display:grid;gap:12px}
+    .pdf-frame{width:100%;height:80vh;border:1px solid rgba(148,163,184,.3);border-radius:12px}
+    .toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(148,163,184,.35);padding:.4rem .7rem;border-radius:10px}
+    .btn:hover{background:rgba(148,163,184,.12)}
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+    <div class="brand"><div class="logo"></div><strong>バタジーのスケッチギャラリー</strong></div>
+    <nav class="links"><a href="index.html">ホーム</a><a href="gallery.html">作品一覧</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card viewer">
+    <div class="toolbar">
+      <a class="btn" href="javascript:history.back()">← 戻る</a>
+      <a id="dl" class="btn" href="#" download>PDFをダウンロード</a>
+    </div>
+    <iframe id="frame" class="pdf-frame" title="PDF Viewer"></iframe>
+    <small style="color:var(--muted)">※ 表示されない場合はダウンロードしてご覧ください。</small>
+  </section>
+</main>
+
+<footer class="site">&copy; 2025 川端浩二</footer>
+
+<script>
+  const qs = new URLSearchParams(location.search);
+  const src = qs.get('src') || '';
+  const frame = document.getElementById('frame');
+  const dl = document.getElementById('dl');
+
+  // 簡単な安全対策：相対パスのみ許可（http/httpsやスキーム拒否）
+  if (/^(https?:|data:|blob:|\/\/)/i.test(src) || !src) {
+    frame.replaceWith(Object.assign(document.createElement('div'), {
+      className: 'card',
+      innerHTML: 'PDFの指定が不正か、見つかりませんでした。'
+    }));
+    dl.style.display = 'none';
+  } else {
+    // local サーバー上で相対パスをそのまま表示
+    frame.src = src + '#toolbar=1&navpanes=0&scrollbar=1';
+    dl.href = src;
+  }
+</script>
+</body>
+</html>
+

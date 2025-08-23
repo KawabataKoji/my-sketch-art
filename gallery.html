@@ -1,0 +1,38 @@
+<<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>作品一覧 | バタジーのスケッチギャラリー</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+    <div class="brand"><div class="logo"></div><strong>バタジーのスケッチギャラリー</strong></div>
+    <nav class="links">
+      <a href="index.html">ホーム</a>
+      <a href="gallery.html">作品一覧</a>
+      <!-- プロフィールは削除 -->
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card">
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="キーワード検索（タイトル・説明・場所・タグ）">
+      <select id="year"><option value="">年で絞り込む</option></select>
+      <select id="tag"><option value="">タグで絞り込む</option></select>
+      <div class="spacer"></div>
+      <span class="badge">JSON自動生成</span>
+    </div>
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <div id="pager" class="pager"></div>
+  </section>
+</main>
+
+<footer class="site">&copy; 2025 川端浩二</footer>
+<script src="assets/app.js?v=6"></script>
+</body>
+</html>

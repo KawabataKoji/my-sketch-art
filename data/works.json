@@ -1,0 +1,106 @@
+[
+    {
+      "id": "w001",
+      "title": "夕映えの道",
+      "date": "2025-02-11",
+      "size": "F10",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "熊本・河浦",
+      "tags": ["風景", "道", "冬"],
+      "thumb": "thumbs/yubae_miti.jpg",
+      "image": "images/yubae_miti.jpg",
+      "description": "夕暮れの国道、太陽が沈む瞬間の眩しい光を表現してみました。"
+    },
+    {
+      "id": "w002",
+      "title": "夕凪の港",
+      "date": "2025-07-10",
+      "size": "F10",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "熊本・河浦",
+      "tags": ["風景", "夕景", "海"],
+      "thumb": "thumbs/yunagi_minato.jpg",
+      "image": "images/yunagi_minato.jpg",
+      "description": "午後の静かな港、懐かしい漁村の風景です。"
+    },
+    {
+      "id": "w003",
+      "title": "桜の影、峠へ続く道",
+      "date": "2025-04-15",
+      "size": "F10",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "熊本・深海",
+      "tags": ["風景", "桜","道"],
+      "thumb": "thumbs/sakura_kage.jpg",
+      "image": "images/sakura_kage.jpg",
+      "description": "散り際の桜の枝に覆われた夕暮れの道。"
+    },
+    {
+      "id": "w004",
+      "title": "サイネリア",
+      "date": "2025-02-15",
+      "size": "F6",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "熊本・深海",
+      "tags": ["花", "サイネリア"],
+      "thumb": "thumbs/cineria.jpg",
+      "image": "images/cineria.jpg",
+      "description": "爽やかで清楚な美しさを表現しました。"
+    },
+    {
+      "id": "w005",
+      "title": "夕暮れの記憶",
+      "date": "2025-03-31",
+      "size": "F8",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "熊本・河浦",
+      "tags": ["風景", "冬","裸木"],
+      "thumb": "thumbs/yugure_kioku.jpg",
+      "image": "images/yugure_kioku.jpg",
+      "description": "春の夕暮れの空気感と落葉した木の存在感を表現。"
+    },
+    {
+      "id": "w006",
+      "title": "入江の小舟",
+      "date": "2025-06-03",
+      "size": "F8",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "熊本・深海",
+      "tags": ["風景", "小舟","入江"],
+      "thumb": "thumbs/irie_kobune.jpg",
+      "image": "images/irie_kobune.jpg",
+      "description": "凪の入江に浮かぶ小舟と水面の透明感を表現。"
+    },
+    {
+      "id": "w007",
+      "title": "黒崎海岸",
+      "date": "2025-08-16",
+      "size": "F8",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "熊本・深海",
+      "tags": ["風景", "海岸","夏"],
+      "thumb": "thumbs/kurosaki.jpg",
+      "image": "images/kurosaki.jpg",
+      "description": "凪の入江に浮かぶ小舟と水面の透明感を表現。"
+    },
+    {
+      "id": "pdf001",
+      "title": "水彩スケッチ帳（PDF冊子）",
+      "date": "2025-12",
+      "tags": ["PDF","冊子"],
+      "thumb": "thumbs/suisai_sketch_cover.jpg",
+      "image": "images/suisai_sketch.jpg",
+      "pdf": "images/suisai_sketch.pdf",
+      "description": "これまでのスケッチをまとめた小冊子（PDF）。"
+    }
+        
+]
+  
+  

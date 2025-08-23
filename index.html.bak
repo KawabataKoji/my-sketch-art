@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>バタジーのスケッチギャラリー</title>
+  <meta name="description" content="水彩画の作品一覧・新着情報・プロフィール">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* 新着情報用の軽いスタイル */
+    .news-list{list-style:none;margin:0;padding:0}
+    .news-list li{display:flex;gap:12px;padding:10px 0;border-top:1px solid rgba(148,163,184,.25)}
+    .news-list li:first-child{border-top:none}
+    .news-date{color:var(--muted);min-width:8.2em;white-space:nowrap}
+    .news-title{font-weight:600}
+    .news-body{color:var(--muted);font-size:.95em;margin-top:2px}
+    .empty{color:var(--muted)}
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+    <div class="brand"><div class="logo"></div><strong>バタジーのスケッチギャラリー</strong></div>
+    <nav class="links"><a href="index.html">ホーム</a><a href="gallery.html">作品一覧</a><a href="about.html">プロフィール</a></nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- ヒーロー / リード -->
+  <section class="card" style="display:grid;gap:10px;">
+    <h1 class="title" style="margin:0">ようこそ</h1>
+    <p class="lead" style="margin:0">天草の山や海、のどかな港町をモチーフに、水彩で光と空気感を描いています。</p>
+  </section>
+
+  <!-- 新着情報（ニュース） -->
+  <section class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <h3 style="margin:0">新着情報</h3>
+      <small style="color:var(--muted)">※ 管理用: data/news.json を作成すると自動表示されます</small>
+    </div>
+    <ul id="news-list" class="news-list" style="margin-top:8px;">
+      <li class="empty">お知らせは準備中です。</li>
+    </ul>
+  </section>
+
+  <!-- 新着作品（app.js が #latest に3件描画） -->
+  <section class="card">
+    <h3 style="margin:0 0 10px;">新着作品</h3>
+    <div id="latest" class="grid"></div>
+    <p style="margin-top:8px;"><a href="gallery.html">→ すべての作品を見る</a></p>
+  </section>
+</main>
+
+<footer class="site">&copy; 2025 川端浩二</footer>
+
+<script src="assets/app.js"></script>
+<script>
+// ニュースを data/news.json から読み込み（無ければ既定文のまま）
+(function(){
+  const ul = document.getElementById('news-list');
+  fetch('data/news.json', {cache:'no-store'})
+    .then(r=>{ if(!r.ok) throw new Error(r.statusText); return r.json(); })
+    .then(items=>{
+      if(!Array.isArray(items) || items.length===0){
+        ul.innerHTML = '<li class="empty">現在お知らせはありません。</li>';
+        return;
+      }
+      ul.innerHTML = '';
+      items
+        .sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')))
+        .slice(0,6)
+        .forEach(n=>{
+          const date = (n.date||'').slice(0,10);
+          const li = document.createElement('li');
+          const title = n.link
+            ? `<a href="${n.link}" target="_blank" rel="noopener">${n.title||''}</a>`
+            : `${n.title||''}`;
+          const body = n.body ? `<div class="news-body">${n.body}</div>` : '';
+          li.innerHTML = `<div class="news-date">${date}</div><div class="news-main"><div class="news-title">${title}</div>${body}</div>`;
+          ul.appendChild(li);
+        });
+    })
+    .catch(()=>{/* data/news.json が無い場合は既定文をそのまま表示 */});
+})();
+</script>
+</body>
+</html>
