@@ -99,6 +99,19 @@
       "image": "images/suisai_sketch.jpg",
       "pdf": "images/suisai_sketch.pdf",
       "description": "これまでのスケッチをまとめた小冊子（PDF）。"
+    },
+    {
+      "id": "w008",
+      "title": "天草富士",
+      "date": "2025-08-29",
+      "size": "F2",
+      "paper": "マルマン",
+      "medium": "Watercolor",
+      "location": "熊本・天草",
+      "tags": ["風景", "海岸","無人島"],
+      "thumb": "thumbs/ubushima.jpg",
+      "image": "images/ubushima.jpg",
+      "description": "黒崎海岸から望む産島、天草富士と呼ばれている天草富士と呼ばれている。"
     }
         
 ]
