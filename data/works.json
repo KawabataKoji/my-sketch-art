@@ -112,6 +112,32 @@
       "thumb": "thumbs/ubushima.jpg",
       "image": "images/ubushima.jpg",
       "description": "黒崎海岸から望む産島、天草富士と呼ばれている天草富士と呼ばれている。"
+    },
+    {
+      "id": "w009",
+      "title": "百日紅の花",
+      "date": "2025-09-19",
+      "size": "F0",
+      "paper": "マルマン",
+      "medium": "Watercolor",
+      "location": "熊本・深海",
+      "tags": ["夏", "木","花"],
+      "thumb": "thumbs/sarusuberi.jpg",
+      "image": "images/sarusuberi.jpg",
+      "description": "樹皮がつるつるしていて「猿も滑る」ことから「サルスベリ」という。夏から秋にかけて長い期間（およそ100日）咲き続けるそうです。。"
+    },
+    {
+      "id": "w010",
+      "title": "夏、海辺と寺町",
+      "date": "2025-09-30",
+      "size": "F8",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "鹿児島・南さつま市坊津町坊",
+      "tags": ["夏", "山","寺"],
+      "thumb": "thumbs/sarusuberi.jpg",
+      "image": "images/sarusuberi.jpg",
+      "description": "南さつま市を旅行した時、山あいに寄り添うように建つお寺や家並みと手前に広がる海辺の穏やかな青が印象に残っています。"
     }
         
 ]
