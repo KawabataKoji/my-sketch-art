@@ -138,6 +138,32 @@
       "thumb": "thumbs/botumachi.jpg",
       "image": "images/botumachi.jpg",
       "description": "南さつま市を旅行した時、山あいに寄り添うように建つお寺や家並みと手前に広がる海辺の穏やかな青が印象に残っています。"
+    },
+    {
+      "id": "w011",
+      "title": "日光鬼怒川温泉・晩秋",
+      "date": "2025-12-30",
+      "size": "F8",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "栃木県日光市鬼怒川温泉",
+      "tags": ["秋", "山","温泉"],
+      "thumb": "thumbs/kinugawa.jpg",
+      "image": "images/kinugawa.jpg",
+      "description": "栃木県日光鬼怒川温泉に旅行した時、朝ホテルを出発前に撮影したものです。山間の朝の光が当たっているところと影の部分が印象的でした。"
+    },
+    {
+      "id": "w012",
+      "title": "馬籠館",
+      "date": "2025-12-30",
+      "size": "F6",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "岐阜県中津川市馬籠",
+      "tags": ["馬籠宿", "山","古屋敷"],
+      "thumb": "thumbs/umakago.jpg",
+      "image": "images/umakago.jpg",
+      "description": "グリザイユ画法で描いた水彩画です。下描きはペン画で描いています。"
     }
         
 ]
