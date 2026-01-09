@@ -164,6 +164,19 @@
       "thumb": "thumbs/satoyama.jpg",
       "image": "images/satoyama.jpg",
       "description": "グリザイユ画法で描いた水彩画です。下描きはペン画で描いています。"
+    },
+    {
+      "id": "w013",
+      "title": "日光鬼怒川の紅葉",
+      "date": "2026-01-09",
+      "size": "F6",
+      "paper": "holbein WATER FORD",
+      "medium": "Watercolor",
+      "location": "群馬県日光市鬼怒川温泉",
+      "tags": ["晩秋", "里山","紅葉","温泉"],
+      "thumb": "thumbs/koyo.jpg",
+      "image": "images/koyo.jpg",
+      "description": "グリザイユ画法で描いた水彩画です。下描きはペンで描いています。"
     }
         
 ]
