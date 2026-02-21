@@ -177,6 +177,19 @@
       "thumb": "thumbs/koyo.jpg",
       "image": "images/koyo.jpg",
       "description": "グリザイユ画法で描いた水彩画です。下描きはペンで描いています。"
+    },
+    {
+      "id": "w014",
+      "title": "水辺の家並み",
+      "date": "2026-01-28",
+      "size": "F6",
+      "paper": "holbein WATER FORD",
+      "medium": "Watercolor",
+      "location": "五和町二江",
+      "tags": ["静けさ", "水辺","暮らし","川"],
+      "thumb": "thumbs/futae.jpg",
+      "image": "images/futae.jpg",
+      "description": "下描きはペンで描いています。川面に映る影を丁寧に描いてみました。"
     }
         
 ]
