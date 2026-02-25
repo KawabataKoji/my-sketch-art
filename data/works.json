@@ -190,6 +190,19 @@
       "thumb": "thumbs/futae.jpg",
       "image": "images/futae.jpg",
       "description": "下描きはペンで描いています。川面に映る影を丁寧に描いてみました。"
+    },
+    {
+      "id": "w015",
+      "title": "三溪園の池畔",
+      "date": "2026-02-25",
+      "size": "F8",
+      "paper": "AVALON",
+      "medium": "Watercolor",
+      "location": "横浜市三溪園",
+      "tags": ["静けさ", "水辺","小舟","池"],
+      "thumb": "thumbs/sankeien.jpg",
+      "image": "images/sankeien.jpg",
+      "description": "下描きはペンで描いています。湖畔の静けさを描いてみました。"
     }
         
 ]
