@@ -203,6 +203,19 @@
       "thumb": "thumbs/sankeien.jpg",
       "image": "images/sankeien.jpg",
       "description": "下描きはペンで描いています。湖畔の静けさを描いてみました。"
+    },
+    {
+      "id": "w016",
+      "title": "石の回廊",
+      "date": "2026-03-10",
+      "size": "F6",
+      "paper": "watercolor",
+      "medium": "Watercolor",
+      "location": "ギリシャのアーチ",
+      "tags": ["静けさ", "アーチ","光と影","石の回廊"],
+      "thumb": "thumbs/ishinokairo.jpg",
+      "image": "images/ishinokairo.jpg",
+      "description": "下描きはペンで描いています。グリザイユ画法で光と影の対象を描いて見ました。"
     }
         
 ]
