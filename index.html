@@ -1,9 +1,9 @@
-３<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>バタジーのスケッチギャラリー</title>
+  <title>バタジーのスケッチ＆AIアプリ</title>
   <meta name="description" content="水彩画の作品一覧・新着情報・プロフィール">
   <link rel="stylesheet" href="assets/style.css">
   <style>
@@ -27,24 +27,28 @@
 <body>
 <header class="site">
   <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
-    <div class="brand"><div class="logo"></div><strong>バタジーのスケッチギャラリー</strong></div>
+    <div class="brand"><div class="logo"></div><strong>バタジーのスケッチ&AIアプリ</strong></div>
     <nav class="links">
       <a href="index.html">ホーム</a>
-      <a href="gallery.html">作品一覧</a>
-      <!-- プロフィールは削除済み -->
+      <a href="gallery.html">水彩画</a>
+      <a href="shushi_app.html">AIアプリ</a>
     </nav>
-  </div>
+    </div>
 </header>
 
 <main class="container">
-  <!-- ヒーロー / リード -->
-  <section class="card" style="display:grid;gap:10px;">
-    <h1 class="title" style="margin:0">ようこそ</h1>
-    <p class="lead" style="margin:0">天草の山や海、のどかな港町をモチーフに、水彩で光と空気感を描いています。</p>
-  </section>
+<!-- ヒーロー / リード -->
+<section class="card welcome-section">
+  <h1 class="title" style="margin:0 0 10px;">ようこそ</h1>
+  <p class="lead" style="margin:0;">
+    天草の山や海、のどかな港町をモチーフに、水彩で光と空気感を描いています。<br>
+    また、AIを活用したアプリ制作にも取り組み、作品とともに発信しています。
+  </p>
+</section>
 
-  <!-- 新着情報 -->
-  <section class="card">
+<!-- 新着情報＋画像 -->
+<section class="home-top-grid">
+  <section class="card news-card">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
       <h3 style="margin:0">新着情報</h3>
       <small style="color:var(--muted)">※ 管理用: data/news.json を作成すると自動表示されます</small>
@@ -54,13 +58,133 @@
     </ul>
   </section>
 
-  <!-- 新着作品 -->
-  <section class="card">
+  <section class="card hero-image-card">
+    <img src="images/yubae_miti.jpg" alt="夕映えの道" class="hero-side-image">
+  </section>
+</section>
+
+    <!-- index.html に追加する紹介セクション -->
+<section class="card section story-section">
+  <div class="story-header">
+    <div>
+      <div class="badge">About Bataji</div>
+      <h2 class="title" style="margin:10px 0 8px;font-size:1.8em;">絵を描くこと、学ぶこと、作ること</h2>
+      <p class="lead" style="margin:0;">
+        60歳から水彩画を始め、生成AIと出会ってからはPythonにも挑戦。<br>
+        67歳で水彩画とAIアプリのホームページ公開へ――そんな歩みを、このサイトに込めています。
+      </p>
+    </div>
+  </div>
+
+  <div class="story-grid">
+    <div class="story-card">
+      <h3>60歳から始めた水彩画</h3>
+      <p>
+        私は60歳で退職し、その後に水彩画を始めました。地元・天草の山や海、港町の風景、旅先で心に残った景色を、
+        水彩のにじみや重なりで表現することに魅力を感じながら、少しずつ描き続けています。
+      </p>
+      <p>
+        絵を描くことは、ただ風景を写すだけではなく、そのときの光、空気、気持ちまで残しておけるような喜びがあります。
+        このホームページでは、そんな作品の記録を大切に紹介していきたいと思っています。
+      </p>
+    </div>
+
+    <div class="story-card">
+      <h3>ChatGPTとの出会いとAIへの挑戦</h3>
+      <p>
+        ChatGPTが公開されて半年ほどたった頃、私は生成AIに強く興味を持ちました。もともとパソコンやプログラムには関心がありましたが、
+        Pythonは初心者としてのスタートでした。それでも、AIに相談しながら少しずつ学ぶことで、今まで自分ひとりでは難しいと感じていたことにも
+        挑戦できるようになりました。
+      </p>
+      <p>
+        わからないことを一つずつ確かめながら進めるうちに、AIは単なる便利な道具ではなく、学びを後押ししてくれる心強い相棒のような存在になっています。
+      </p>
+    </div>
+
+    <div class="story-card">
+      <h3>67歳でホームページ公開へ</h3>
+      <p>
+        67歳になった今、水彩画の作品だけでなく、自分で作ったアプリも合わせて、このホームページで公開していこうと考えています。
+        絵の世界と、AIを活用したものづくりの世界は、一見別のようでいて、どちらも「自分の中にあるイメージを形にする」という点でつながっているように感じます。
+      </p>
+      <p>
+        作品を描くことも、アプリを作ることも、どちらも日々の暮らしの中から生まれる創作です。このサイトでは、その両方を自然な形で紹介していきます。
+      </p>
+    </div>
+
+    <div class="story-card">
+      <h3>これからの思い</h3>
+      <p>
+        年齢に関係なく、新しいことに挑戦できることを、自分自身で確かめながら歩んでいます。水彩画もAIも、始めたときは分からないことばかりでしたが、
+        続けていくうちに少しずつ形になってきました。
+      </p>
+      <p>
+        このホームページでは、作品を見ていただくだけでなく、「自分も何か始めてみよう」と思ってもらえるような場にしていきたいと考えています。
+        これからも、絵を描き、学び、作りながら、一歩ずつ前に進んでいきます。
+      </p>
+    </div>
+  </div>
+</section>
+
+   <!-- 新着作品 -->
+   <section class="card">
     <h3 style="margin:0 0 10px;">新着作品</h3>
     <div id="latest" class="grid"></div>
     <p style="margin-top:8px;"><a href="gallery.html">→ すべての作品を見る</a></p>
   </section>
 
+  <section class="apps-section">
+    <div class="apps-inner">
+      <div class="apps-text">
+        <p class="apps-label">AIアプリ紹介</p>
+        <h2>暮らしや仕事に役立つ<br>自作アプリ</h2>
+        <p class="apps-desc">
+          AIのサポートを受けながら、日々の暮らしや仕事に役立つアプリを少しずつ作っています。
+          収支内訳書アプリをはじめ、実用的で使いやすい道具を目指して改良中です。
+        </p>
+        <a class="apps-button" href="shushi_app.html">収支内訳書アプリを見る</a>
+      </div>
+  
+      <div class="apps-card">
+        <h3>収支内訳書アプリ</h3>
+        <p>
+          誰でも簡単に収支内訳書が作れることを目指したWindows版アプリです。
+          入力・確認・出力を分かりやすくまとめ、はじめての方でも使いやすい形を目指しています。
+        </p>
+        <ul>
+          <li>収入・支出の入力</li>
+          <li>一覧で確認しやすい画面</li>
+          <li>Windows版ダウンロード対応予定</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="apps-section">
+    <div class="apps-inner">
+      
+      <div class="apps-text">
+        <span class="apps-label">AIアプリ</span>
+        <h2>収支内訳書アプリ</h2>
+        <p class="apps-desc">
+          誰でも簡単に収支内訳書が作れるアプリです。<br>
+          AIを活用しながら実務に役立つツールを制作しています。
+        </p>
+        <a href="shushi_app.html" class="apps-button">詳しく見る</a>
+      </div>
+  
+      <div class="apps-card">
+        <h3>📊 できること</h3>
+        <p>
+          ・収支データ入力<br>
+          ・Excel自動作成<br>
+          ・初心者でも簡単操作
+        </p>
+      </div>
+  
+    </div>
+  </section>
+  
   <!-- プロフィール -->
   <section class="card section">
     <div>
@@ -106,9 +230,10 @@
 
   <section class="card section contact">
     <h3 style="margin:0 0 8px;">お問い合わせ / リンク</h3>
-    <p>ご感想・お問い合わせは <a href="mailto:mikan579@me.com">batajisketch2508@gmail.com</a> までメールでお送りください。</p>
+    <p>ご感想・お問い合わせは <a href="mailto:mikan579@me.com">mikan579@me.com</a> までメールでお送りください。</p>
   </section>
 
+  
 </main>
 
 <footer class="site">&copy; 2025 川端浩二</footer>
@@ -128,7 +253,7 @@
       ul.innerHTML = '';
       items
         .sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')))
-        .slice(0,6)
+        .slice(0,5)
         .forEach(n=>{
           const date = (n.date||'').slice(0,10);
           const li = document.createElement('li');

@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>収支内訳書アプリ | バタジーのスケッチ＆AIアプリ</title>
+  <style>
+    :root {
+      --bg: #f8f7f3;
+      --card: #ffffff;
+      --ink: #2f3a3d;
+      --muted: #6a767a;
+      --line: #d9d8d2;
+      --accent: #4f7f75;
+      --accent-2: #b46d4e;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 18px;
+      --max: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f7f5ef 0%, #f3f7f8 100%);
+      line-height: 1.8;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248,247,243,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 64px 0 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 38px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #edf5f2;
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.25;
+      margin: 0 0 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+    }
+
+    .btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .btn.secondary {
+      background: white;
+      color: var(--ink);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+
+    .hero-side {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    .status-box {
+      background: #f9faf9;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .status-box strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+
+    main section {
+      padding: 18px 0 30px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin: 0 0 14px;
+    }
+
+    .section-lead {
+      color: var(--muted);
+      margin: 0 0 22px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.08rem;
+    }
+
+    .card p, .card li, .step p, .download p {
+      color: var(--muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .shot {
+      background: #f0f2f2;
+      border: 1px dashed #b7c1c2;
+      border-radius: 16px;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      padding: 18px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      background: var(--card);
+      border: 1px solid rgba(0,0,0,0.05);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .step-no {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #edf5f2;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .download {
+      background: linear-gradient(135deg, #fcfcfb 0%, #eef5f2 100%);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 30px 0 56px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .small-list {
+      padding-left: 1.2em;
+      margin: 0;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .cards,
+      .two-col,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .shot-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">バタジーのスケッチ＆AIアプリ</div>
+      <nav class="nav-links">
+        <a href="#about">アプリ紹介</a>
+        <a href="#features">できること</a>
+        <a href="#screens">画面</a>
+        <a href="#download">ダウンロード</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="panel hero-copy">
+          <div class="eyebrow">Windows版アプリ紹介</div>
+          <h1>誰でも簡単に収支内訳書が作れる<br>収支内訳書アプリ</h1>
+          
+          <p class="lead">
+            日々の収入・支出を入力して、収支内訳書づくりを分かりやすくするためのWindows用アプリです。
+            パソコンが得意でない方でも使いやすい形を目指して、AIのサポートを受けながら少しずつ改良しています。
+          </p>
+          <div class="btns">
+            <a class="btn primary" href="#download">Windows版をダウンロード</a>
+            <a class="btn secondary" href="#screens">画面を見る</a>
+          </div>
+        </div>
+
+        <div class="panel hero-side">
+          <div class="status-box">
+            <strong>このページについて</strong>
+            収支内訳書アプリの目的、機能、使い方、Windows版の配布方法をまとめています。
+          </div>
+          <div class="status-box">
+            <strong>対応環境</strong>
+            Windows向けの配布を想定しています。ZIPを展開して、exeファイルを起動して使います。
+          </div>
+          <div class="status-box">
+            <strong>制作の思い</strong>
+            暮らしや仕事の中で「こんな道具があれば助かる」と感じたものを、自分で少しずつ形にしています。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section id="about">
+        <h2 class="section-title">アプリ紹介</h2>
+        <p class="section-lead">
+          手書きやExcelだけでは手間がかかりやすい収支整理を、できるだけやさしく、見やすく、続けやすくするために作ったアプリです。
+        </p>
+        <div class="cards">
+          <article class="card">
+            <h3>作った理由</h3>
+            <p>
+              収支内訳書は、入力や転記、見直しに時間がかかりやすいと感じていました。
+              そこで、日々の記録から帳票づくりまでを少しでも楽にできるように、このアプリを作り始めました。
+            </p>
+          </article>
+          <article class="card">
+            <h3>めざしたこと</h3>
+            <p>
+              難しい設定をできるだけ減らし、入力・確認・出力の流れが分かりやすいことを大切にしています。
+              はじめての方でも迷いにくい画面を目標にしています。
+            </p>
+          </article>
+          <article class="card">
+            <h3>開発スタイル</h3>
+            <p>
+              Pythonを使い、AIのサポートも受けながら改良しています。
+              小さく作って、使いながら直していく形で育てているアプリです。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="features">
+        <h2 class="section-title">できること</h2>
+        <div class="two-col">
+          <div class="card">
+            <ul class="small-list">
+              <li>日付・項目・金額などの入力</li>
+              <li>収入と支出の一覧表示</li>
+              <li>入力内容の保存と見直し</li>
+              <li>収支内訳書の作成補助</li>
+              <li>Windowsで使いやすい配布形式</li>
+            </ul>
+          </div>
+          <div class="card">
+            <ul class="small-list">
+              <li>シンプルな操作で帳票づくりを支援</li>
+              <li>はじめてでも迷いにくい画面構成</li>
+              <li>実務に合わせて少しずつ改良中</li>
+              <li>今後は印刷や過去データ利用も強化予定</li>
+              <li>AIを活用した個人開発の実例として公開</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="screens">
+        <h2 class="section-title">画面イメージ</h2>
+        <p class="section-lead">
+          メイン画面、Excelの出納簿（Sheet1）、収支内訳書（Sheet2）の画面です。
+        </p>
+      
+        <div class="shot-grid shot-grid-3">
+          <div class="shot">
+            <img src="images/shushi1.png" alt="収支内訳書アプリのメイン画面と入力画面">
+            <p>メイン画面・入力画面</p>
+          </div>
+      
+          <div class="shot">
+            <img src="images/shushi2.png" alt="Excelの出納簿（Sheet1）">
+            <p>Excel 出納簿（Sheet1）</p>
+          </div>
+      
+          <div class="shot">
+            <img src="images/shushi3.png" alt="Excelの収支内訳書（Sheet2）">
+            <p>Excel 収支内訳書（Sheet2）</p>
+          </div>
+        </div>
+      </section>
+      
+      <section>
+        <h2 class="section-title">使い方</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-no">1</div>
+            <h3>ZIPを展開</h3>
+            <p>ダウンロードしたWindows版ZIPファイルを解凍します。</p>
+          </div>
+          <div class="step">
+            <div class="step-no">2</div>
+            <h3>exeを起動</h3>
+            <p>フォルダ内の exe ファイルをダブルクリックして起動します。</p>
+          </div>
+          <div class="step">
+            <div class="step-no">3</div>
+            <h3>データを入力</h3>
+            <p>必要事項を入力し、保存しながら内容を確認します。</p>
+          </div>
+          <div class="step">
+            <div class="step-no">4</div>
+            <h3>帳票を作成</h3>
+            <p>集計や出力機能を使って、収支内訳書作成に活用します。</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="download">
+        <h2 class="section-title">ダウンロード</h2>
+        <div class="download">
+          <h3>Windows版 収支内訳書アプリ</h3>
+          <p>
+            ホームページに掲載する場合は、ZIPファイルを用意して、このボタンのリンク先を差し替えてください。
+            現在は見本のためリンク先は未設定です。
+          </p>
+          <div class="btns">
+            <a class="btn primary" href="#">Windows版ZIPをダウンロード</a>
+            <a class="btn secondary" href="#">使い方を見る</a>
+          </div>
+          <p class="note">
+            ※ 配布フォルダの例：<br>
+            収支内訳書アプリ / 収支内訳書.exe / 使い方.txt / 必要な初期ファイル
+          </p>
+          <p class="note">
+            ※ Mac版は別途作成が必要です。現在このページはWindows版の案内を中心にしています。
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">今後の予定</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>画面の改良</h3>
+            <p>入力しやすい配置や、分かりやすい表示に少しずつ整えていく予定です。</p>
+          </article>
+          <article class="card">
+            <h3>出力機能の強化</h3>
+            <p>帳票出力、印刷、Excel連携などをより使いやすくしていくことを考えています。</p>
+          </article>
+          <article class="card">
+            <h3>アプリ紹介の拡充</h3>
+            <p>今後は家計簿アプリや作業日報アプリなども、このサイトで順次紹介していく予定です。</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>バタジーのスケッチ＆AIアプリ</div>
+      <div>水彩画と、AIを活用した実用アプリの記録</div>
+    </footer>
+  </div>
+</body>
+</html>
