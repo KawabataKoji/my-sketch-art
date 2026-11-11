@@ -1,181 +1,23 @@
-// ===== 共通ユーティリティ =====
-function esc(s){ return String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
-
-// works.json の1件から “サムネURL” を返す（thumb がフルパスでもOK）
-function getThumbUrl(item){
-  // item.thumb があればそれを優先（"thumbs/xxx.jpg" など相対パス想定）
-  if (item && item.thumb) return item.thumb;
-  // なければ原寸を使う
-  return item?.image || '';
+"use strict";
+const DATA={watercolor:'data/watercolors.json',sketch:'data/sketches.json'};
+async function loadJSON(path){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw Error(`${path}: ${r.status}`);const a=await r.json();if(!Array.isArray(a))throw Error('JSONは配列にしてください');return a;}
+const sorted=a=>[...a].sort((x,y)=>String(y.date||'').localeCompare(String(x.date||'')));
+const workTitle=w=>w.title||'無題';
+function card(w){
+ const article=document.createElement('article');article.className='item';
+ const button=document.createElement('button');button.type='button';button.setAttribute('aria-label',workTitle(w)+'の詳細を見る');
+ const wrap=document.createElement('div');wrap.className='thumb-wrap';const img=document.createElement('img');img.src=w.thumb||w.image||'';img.alt=workTitle(w);img.loading='lazy';img.onerror=()=>{if(w.image&&img.src!==new URL(w.image,location.href).href)img.src=w.image;};wrap.append(img);
+ const meta=document.createElement('div');meta.className='meta';const h=document.createElement('h3');h.textContent=workTitle(w);const sub=document.createElement('div');sub.className='sub';sub.textContent=[w.location||w.place,w.date].filter(Boolean).join(' ／ ');const desc=document.createElement('p');desc.textContent=w.description||'';meta.append(h,sub,desc);button.append(wrap,meta);button.addEventListener('click',()=>openWork(w));article.append(button);return article;
 }
-
-// works.json の1件から “原寸URL” を返す（image は "images/xxx.jpg" など）
-function getImageUrl(item){
-  return item?.image || '';
-}
-
-// 作品の識別子（詳細ページに渡す値）を決める
-function getWorkKey(item){
-  return item.id || (item.image ? item.image.split('/').pop() : (item.title || ''));
-}
-
-// ===== ホーム（#latest）: 新着3件 =====
-document.addEventListener('DOMContentLoaded', function(){
-  const latest = document.getElementById('latest');
-  if (!latest) return; // ホーム以外ではスキップ
-
-  fetch('data/works.json', {cache:'no-store'})
-    .then(r => r.ok ? r.json() : [])
-    .then(list => {
-      const works = Array.isArray(list) ? list : [list];
-      // 日付降順で3件
-      const items = works
-        .slice()
-        .sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')))
-        .slice(0,3);
-
-      if (!items.length){
-        latest.innerHTML = '<div class="card">作品がまだありません。</div>';
-        return;
-      }
-
-      latest.innerHTML = items.map(item => {
-        const key = encodeURIComponent(getWorkKey(item));
-        const sub = [item.location || '', item.date ? String(item.date).slice(0,10) : '']
-          .filter(Boolean).join(' / ');
-        return `
-          <a class="card item" href="detail.html?id=${key}">
-            <div class="thumb-wrap" style="aspect-ratio:4/3;overflow:hidden;border-radius:12px;">
-              <img
-                src="${getThumbUrl(item)}"
-                srcset="${getThumbUrl(item)} 1x, ${getImageUrl(item)} 2x"
-                sizes="(max-width: 640px) 100vw, 33vw"
-                alt="${esc(item.title || '')}"
-                style="width:100%;height:100%;object-fit:cover;display:block;"
-                loading="lazy" decoding="async">
-            </div>
-            <div class="meta">
-              <div class="title">${esc(item.title || '')}</div>
-              <div class="sub" style="color:var(--muted)">${esc(sub)}</div>
-            </div>
-          </a>
-        `;
-      }).join('');
-    })
-    .catch(()=> {
-      latest.innerHTML = '<div class="card">新着の読み込みに失敗しました。</div>';
-    });
-});
-
-// ===== 作品一覧（#grid） =====
-document.addEventListener('DOMContentLoaded', function(){
-  const grid    = document.getElementById('grid');
-  if (!grid) return; // ギャラリー以外ではスキップ
-  const searchEl = document.getElementById('search');
-  const yearEl   = document.getElementById('year');
-  const tagEl    = document.getElementById('tag');
-  const pagerEl  = document.getElementById('pager');
-
-  let works = [], filtered = [];
-  let page = 1;
-  const pageSize = 12;
-
-  fetch('data/works.json', {cache:'no-store'})
-    .then(r => r.ok ? r.json() : [])
-    .then(list => {
-      works = Array.isArray(list) ? list : [list];
-      buildFilters(works);
-      applyFilters();
-      searchEl?.addEventListener('input', onFilter);
-      yearEl?.addEventListener('change', onFilter);
-      tagEl?.addEventListener('change', onFilter);
-    })
-    .catch(()=>{
-      grid.innerHTML = '<div class="card">作品データ（data/works.json）が読み込めませんでした。</div>';
-    });
-
-  function onFilter(){ page = 1; applyFilters(); }
-
-  function buildFilters(list){
-    const years = new Set(), tags = new Set();
-    list.forEach(x => {
-      if (x.date) years.add(String(x.date).slice(0,4));
-      if (Array.isArray(x.tags)) x.tags.forEach(t => tags.add(String(t)));
-    });
-    if (yearEl){
-      const ys = [...years].sort((a,b)=>b.localeCompare(a));
-      yearEl.innerHTML = '<option value="">年で絞り込む</option>' + ys.map(y=>`<option value="${y}">${y}年</option>`).join('');
-    }
-    if (tagEl){
-      const ts = [...tags].sort((a,b)=>a.localeCompare(b));
-      tagEl.innerHTML = '<option value="">タグで絞り込む</option>' + ts.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
-    }
-  }
-
-  function applyFilters(){
-    const q  = (searchEl?.value || '').trim().toLowerCase();
-    const yy = (yearEl?.value || '').trim();
-    const tg = (tagEl?.value || '').trim();
-    filtered = works.filter(x => {
-      if (yy && (!x.date || String(x.date).slice(0,4) !== yy)) return false;
-      if (tg && (!Array.isArray(x.tags) || !x.tags.map(String).includes(tg))) return false;
-      if (q){
-        const hay = [
-          x.title, x.description, x.location, x.paper, x.medium, x.size,
-          ...(Array.isArray(x.tags) ? x.tags : [])
-        ].filter(Boolean).join(' ').toLowerCase();
-        if (!hay.includes(q)) return false;
-      }
-      return true;
-    }).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
-    renderPage();
-  }
-
-  function renderPage(){
-    const total = filtered.length;
-    const maxPage = Math.max(1, Math.ceil(total / pageSize));
-    if (page > maxPage) page = maxPage;
-    const slice = filtered.slice((page-1)*pageSize, (page)*pageSize);
-
-    if (!slice.length){
-      grid.innerHTML = '<div class="card">条件に一致する作品がありません。</div>';
-      pagerEl.innerHTML = '';
-      return;
-    }
-
-    grid.innerHTML = slice.map(item => {
-      const key = encodeURIComponent(getWorkKey(item));
-      const sub = [item.location || '', item.date ? String(item.date).slice(0,10) : '']
-        .filter(Boolean).join(' / ');
-      return `
-        <a class="card item" href="detail.html?id=${key}" aria-label="${esc(item.title || '')}">
-          <div class="thumb-wrap" style="aspect-ratio:4/3;overflow:hidden;border-radius:12px;">
-            <img
-              src="${getThumbUrl(item)}"
-              srcset="${getThumbUrl(item)} 1x, ${getImageUrl(item)} 2x"
-              sizes="(max-width: 640px) 50vw, 25vw"
-              alt="${esc(item.title || '')}"
-              style="width:100%;height:100%;object-fit:cover;display:block;"
-              loading="lazy" decoding="async">
-          </div>
-          <div class="meta">
-            <div class="title">${esc(item.title || '')}</div>
-            <div class="sub" style="color:var(--muted)">${esc(sub)}</div>
-          </div>
-        </a>
-      `;
-    }).join('');
-
-    // ページャ
-    const max = maxPage;
-    pagerEl.innerHTML = `
-      <div style="display:flex;gap:8px;align-items:center;justify-content:center;margin-top:14px;">
-        <button class="btn-prev" ${page<=1?'disabled':''}>前へ</button>
-        <span>${page} / ${max}</span>
-        <button class="btn-next" ${page>=max?'disabled':''}>次へ</button>
-      </div>
-    `;
-    pagerEl.querySelector('.btn-prev')?.addEventListener('click', ()=>{ if(page>1){ page--; renderPage(); } });
-    pagerEl.querySelector('.btn-next')?.addEventListener('click', ()=>{ if(page<max){ page++; renderPage(); } });
-  }
-});
+function openWork(w){const dlg=document.getElementById('viewer');if(!dlg){location.href=(w.category==='sketch'?'sketch.html':'gallery.html');return;}const img=document.getElementById('viewer-img');img.src=w.image||w.thumb||'';img.alt=workTitle(w);document.getElementById('viewer-title').textContent=workTitle(w);document.getElementById('viewer-desc').textContent=[w.date,w.location||w.place,w.size,w.paper,w.description].filter(Boolean).join(' ／ ');let pdf=document.getElementById('viewer-pdf');if(!pdf){pdf=document.createElement('a');pdf.id='viewer-pdf';pdf.className='text-link';pdf.target='_blank';pdf.rel='noopener';dlg.append(pdf);}pdf.hidden=!w.pdf;if(w.pdf){pdf.href=w.pdf;pdf.textContent='PDF冊子を開く';}dlg.showModal();}
+function initViewer(){const dlg=document.getElementById('viewer');if(!dlg)return;document.getElementById('close-viewer').addEventListener('click',()=>dlg.close());dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close();});}
+async function initGallery(type,id){const root=document.getElementById(id);if(!root)return;const search=document.getElementById('search'),year=document.getElementById('year'),tag=document.getElementById('tag'),sort=document.getElementById('sort'),pager=document.getElementById('pager');try{
+ const works=await loadJSON(DATA[type]);if(type==='sketch')works.push(...await loadJSON('data/sketch_book.json'));let page=1;const pageSize=12;
+ const years=[...new Set(works.map(w=>String(w.date||'').slice(0,4)).filter(Boolean))].sort().reverse();for(const y of years){const o=document.createElement('option');o.value=y;o.textContent=y+'年';year.append(o);}
+ const tags=[...new Set(works.flatMap(w=>Array.isArray(w.tags)?w.tags:[]))].sort();for(const t of tags){const o=document.createElement('option');o.value=t;o.textContent=t;tag.append(o);}
+ function render(){const q=search.value.trim().toLocaleLowerCase();let found=works.filter(w=>(!year.value||String(w.date||'').startsWith(year.value))&&(!tag.value||(w.tags||[]).includes(tag.value))&&(!q||[w.title,w.description,w.location,w.place,w.paper,w.medium,w.size,...(w.tags||[])].filter(Boolean).join(' ').toLocaleLowerCase().includes(q)));found=sorted(found);if(sort.value==='old')found.reverse();const max=Math.max(1,Math.ceil(found.length/pageSize));page=Math.min(page,max);root.replaceChildren(...found.slice((page-1)*pageSize,page*pageSize).map(w=>card({...w,category:type})));if(!found.length)root.textContent='条件に一致する作品がありません。';pager.replaceChildren();if(max>1){for(let n=1;n<=max;n++){const b=document.createElement('button');b.textContent=n;if(n===page)b.setAttribute('aria-current','page');b.addEventListener('click',()=>{page=n;render();});pager.append(b);}}}
+ for(const el of [search,year,tag,sort])el.addEventListener(el===search?'input':'change',()=>{page=1;render();});render();
+ }catch(e){root.textContent='作品データを読み込めませんでした。JSONとファイルの配置を確認してください。';console.error(e);}}
+async function initLatest(){const root=document.getElementById('latest');if(!root)return;try{const [w,s]=await Promise.all([loadJSON(DATA.watercolor),loadJSON(DATA.sketch)]);const list=sorted([...w.map(x=>({...x,category:'watercolor'})),...s.map(x=>({...x,category:'sketch'}))]).slice(0,6);root.replaceChildren(...list.map(card));if(!list.length)root.textContent='作品を準備中です。';}catch(e){root.textContent='新着作品を読み込めませんでした。';console.error(e);}}
+async function initNews(){const root=document.getElementById('news-list');if(!root)return;try{const list=sorted(await loadJSON('data/news.json')).slice(0,5);root.replaceChildren();for(const n of list){const li=document.createElement('li'),date=document.createElement('div');date.className='news-date';date.textContent=n.date||'';const title=document.createElement('strong');if(n.link&&/^(gallery|sketch|index)\.html$/.test(n.link)){const a=document.createElement('a');a.href=n.link;a.textContent=n.title||'';title.append(a);}else title.textContent=n.title||'';const body=document.createElement('div');body.textContent=n.body||'';li.append(date,title,body);root.append(li);}if(!list.length)root.textContent='現在お知らせはありません。';}catch(e){root.textContent='お知らせは準備中です。';console.error(e);}}
+document.addEventListener('DOMContentLoaded',()=>{initViewer();initGallery('watercolor','gallery');initGallery('sketch','sketch-gallery');initLatest();initNews();});
