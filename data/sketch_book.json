@@ -1,0 +1,15 @@
+[
+  {
+    "id": "pdf001",
+    "title": "水彩スケッチ帳（PDF冊子）",
+    "date": "2025-12",
+    "tags": [
+      "PDF",
+      "冊子"
+    ],
+    "thumb": "thumbs/suisai_sketch_cover.jpg",
+    "image": "images/suisai_sketch.jpg",
+    "pdf": "images/suisai_sketch.pdf",
+    "description": "これまでのスケッチをまとめた小冊子（PDF）。"
+  }
+]

@@ -1,0 +1,297 @@
+[
+  {
+    "id": "w001",
+    "title": "夕映えの道",
+    "date": "2025-02-11",
+    "size": "F10",
+    "paper": "AVALON",
+    "medium": "Watercolor",
+    "location": "熊本・河浦",
+    "tags": [
+      "風景",
+      "道",
+      "冬"
+    ],
+    "thumb": "thumbs/yubae_miti.jpg",
+    "image": "images/yubae_miti.jpg",
+    "description": "夕暮れの国道、太陽が沈む瞬間の眩しい光を表現してみました。"
+  },
+  {
+    "id": "w002",
+    "title": "夕凪の港",
+    "date": "2025-07-10",
+    "size": "F10",
+    "paper": "AVALON",
+    "medium": "Watercolor",
+    "location": "熊本・河浦",
+    "tags": [
+      "風景",
+      "夕景",
+      "海"
+    ],
+    "thumb": "thumbs/yunagi_minato.jpg",
+    "image": "images/yunagi_minato.jpg",
+    "description": "午後の静かな港、懐かしい漁村の風景です。"
+  },
+  {
+    "id": "w003",
+    "title": "桜の影、峠へ続く道",
+    "date": "2025-04-15",
+    "size": "F10",
+    "paper": "AVALON",
+    "medium": "Watercolor",
+    "location": "熊本・深海",
+    "tags": [
+      "風景",
+      "桜",
+      "道"
+    ],
+    "thumb": "thumbs/sakura_kage.jpg",
+    "image": "images/sakura_kage.jpg",
+    "description": "散り際の桜の枝に覆われた夕暮れの道。"
+  },
+  {
+    "id": "w004",
+    "title": "サイネリア",
+    "date": "2025-02-15",
+    "size": "F6",
+    "paper": "AVALON",
+    "medium": "Watercolor",
+    "location": "熊本・深海",
+    "tags": [
+      "花",
+      "サイネリア"
+    ],
+    "thumb": "thumbs/cineria.jpg",
+    "image": "images/cineria.jpg",
+    "description": "爽やかで清楚な美しさを表現しました。"
+  },
+  {
+    "id": "w005",
+    "title": "夕暮れの記憶",
+    "date": "2025-03-31",
+    "size": "F8",
+    "paper": "AVALON",
+    "medium": "Watercolor",
+    "location": "熊本・河浦",
+    "tags": [
+      "風景",
+      "冬",
+      "裸木"
+    ],
+    "thumb": "thumbs/yugure_kioku.jpg",
+    "image": "images/yugure_kioku.jpg",
+    "description": "春の夕暮れの空気感と落葉した木の存在感を表現。"
+  },
+  {
+    "id": "w006",
+    "title": "入江の小舟",
+    "date": "2025-06-03",
+    "size": "F8",
+    "paper": "AVALON",
+    "medium": "Watercolor",
+    "location": "熊本・深海",
+    "tags": [
+      "風景",
+      "小舟",
+      "入江"
+    ],
+    "thumb": "thumbs/irie_kobune.jpg",
+    "image": "images/irie_kobune.jpg",
+    "description": "凪の入江に浮かぶ小舟と水面の透明感を表現。"
+  },
+  {
+    "id": "w007",
+    "title": "黒崎海岸",
+    "date": "2025-08-16",
+    "size": "F8",
+    "paper": "AVALON",
+    "medium": "Watercolor",
+    "location": "熊本・深海",
+    "tags": [
+      "風景",
+      "海岸",
+      "夏"
+    ],
+    "thumb": "thumbs/kurosaki.jpg",
+    "image": "images/kurosaki.jpg",
+    "description": "凪の入江に浮かぶ小舟と水面の透明感を表現。"
+  },
+  {
+    "id": "w008",
+    "title": "天草富士",
+    "date": "2025-08-29",
+    "size": "F2",
+    "paper": "マルマン",
+    "medium": "Watercolor",
+    "location": "熊本・天草",
+    "tags": [
+      "風景",
+      "海岸",
+      "無人島"
+    ],
+    "thumb": "thumbs/ubushima.jpg",
+    "image": "images/ubushima.jpg",
+    "description": "黒崎海岸から望む産島、天草富士と呼ばれている天草富士と呼ばれている。"
+  },
+  {
+    "id": "w009",
+    "title": "百日紅の花",
+    "date": "2025-09-19",
+    "size": "F0",
+    "paper": "マルマン",
+    "medium": "Watercolor",
+    "location": "熊本・深海",
+    "tags": [
+      "夏",
+      "木",
+      "花"
+    ],
+    "thumb": "thumbs/sarusuberi.jpg",
+    "image": "images/sarusuberi.jpg",
+    "description": "樹皮がつるつるしていて「猿も滑る」ことから「サルスベリ」という。夏から秋にかけて長い期間（およそ100日）咲き続けるそうです。。"
+  },
+  {
+    "id": "w010",
+    "title": "夏、海辺と寺町",
+    "date": "2025-09-30",
+    "size": "F8",
+    "paper": "AVALON",
+    "medium": "Watercolor",
+    "location": "鹿児島・南さつま市坊津町坊",
+    "tags": [
+      "夏",
+      "山",
+      "寺"
+    ],
+    "thumb": "thumbs/botumachi.jpg",
+    "image": "images/botumachi.jpg",
+    "description": "南さつま市を旅行した時、山あいに寄り添うように建つお寺や家並みと手前に広がる海辺の穏やかな青が印象に残っています。"
+  },
+  {
+    "id": "w011",
+    "title": "日光鬼怒川温泉・晩秋",
+    "date": "2025-12-30",
+    "size": "F8",
+    "paper": "AVALON",
+    "medium": "Watercolor",
+    "location": "栃木県日光市鬼怒川温泉",
+    "tags": [
+      "秋",
+      "山",
+      "温泉"
+    ],
+    "thumb": "thumbs/kinugawa.jpg",
+    "image": "images/kinugawa.jpg",
+    "description": "栃木県日光鬼怒川温泉に旅行した時、朝ホテルを出発前に撮影したものです。山間の朝の光が当たっているところと影の部分が印象的でした。"
+  },
+  {
+    "id": "w012",
+    "title": "晩秋の里山",
+    "date": "2026-01-02",
+    "size": "F6",
+    "paper": "holbein WATER FORD",
+    "medium": "Watercolor",
+    "location": "群馬県吾妻線沿線",
+    "tags": [
+      "晩秋",
+      "里山",
+      "紅葉"
+    ],
+    "thumb": "thumbs/satoyama.jpg",
+    "image": "images/satoyama.jpg",
+    "description": "グリザイユ画法で描いた水彩画です。下描きはペン画で描いています。"
+  },
+  {
+    "id": "w013",
+    "title": "日光鬼怒川の紅葉",
+    "date": "2026-01-09",
+    "size": "F6",
+    "paper": "holbein WATER FORD",
+    "medium": "Watercolor",
+    "location": "群馬県日光市鬼怒川温泉",
+    "tags": [
+      "晩秋",
+      "里山",
+      "紅葉",
+      "温泉"
+    ],
+    "thumb": "thumbs/koyo.jpg",
+    "image": "images/koyo.jpg",
+    "description": "グリザイユ画法で描いた水彩画です。下描きはペンで描いています。"
+  },
+  {
+    "id": "w014",
+    "title": "水辺の家並み",
+    "date": "2026-01-28",
+    "size": "F6",
+    "paper": "holbein WATER FORD",
+    "medium": "Watercolor",
+    "location": "五和町二江",
+    "tags": [
+      "静けさ",
+      "水辺",
+      "暮らし",
+      "川"
+    ],
+    "thumb": "thumbs/futae.jpg",
+    "image": "images/futae.jpg",
+    "description": "下描きはペンで描いています。川面に映る影を丁寧に描いてみました。"
+  },
+  {
+    "id": "w015",
+    "title": "三溪園の池畔",
+    "date": "2026-02-25",
+    "size": "F8",
+    "paper": "AVALON",
+    "medium": "Watercolor",
+    "location": "横浜市三溪園",
+    "tags": [
+      "静けさ",
+      "水辺",
+      "小舟",
+      "池"
+    ],
+    "thumb": "thumbs/sankeien.jpg",
+    "image": "images/sankeien.jpg",
+    "description": "下描きはペンで描いています。湖畔の静けさを描いてみました。"
+  },
+  {
+    "id": "w016",
+    "title": "石の回廊",
+    "date": "2026-03-10",
+    "size": "F6",
+    "paper": "watercolor",
+    "medium": "Watercolor",
+    "location": "ギリシャのアーチ",
+    "tags": [
+      "静けさ",
+      "アーチ",
+      "光と影",
+      "石の回廊"
+    ],
+    "thumb": "thumbs/ishinokairo.jpg",
+    "image": "images/ishinokairo.jpg",
+    "description": "下描きはペンで描いています。グリザイユ画法で光と影の対象を描いて見ました。"
+  },
+  {
+    "id": "w017",
+    "title": "ひがし茶屋街（金沢）",
+    "date": "2026-04-04",
+    "size": "F6",
+    "paper": "watercolor",
+    "medium": "Watercolor",
+    "location": "石川県金沢市 ひがし茶屋街",
+    "tags": [
+      "街並み",
+      "路地",
+      "静けさ",
+      "光と影",
+      "遠近感",
+      "日本風景"
+    ],
+    "thumb": "thumbs/chayagai.jpg",
+    "image": "images/chayagai.jpg",
+    "description": "下描きはペンで描いています。金沢・ひがし茶屋街の静かな路地を、奥行きと光の移ろいを意識して描きました。木造の町並みと遠くへ続く道の空気感を、グリザイユ画法で表現しています。"
+  }
+]
